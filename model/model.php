@@ -129,6 +129,193 @@ class Model{
         }
     }
 
+//Employee
+    function insertEmployee(){
+        $conn = new ConnectionDB();
+        $connection = $conn->connection();
+        
+        $name = $_REQUEST['name'];
+        $last_name = $_REQUEST['last_name'];
+        $user_name = $_REQUEST['user_name'];
+        $password = $_REQUEST['password'];  
 
+        $mensaje = array("insert" => false, "mensaje" => "");
+        $query = "INSERT INTO employees(name, last_name, user_name, password) VALUES ('$name','$last_name','$user_name','$password')";
+        $result = mysqli_query($connection, $query);
+
+        if($result){
+            $mensaje['insert'] = true;
+            $mensaje['mensaje'] = "Seccessfull Registration...";
+        }else{
+            $mensaje['insert'] = false;
+            $mensaje['mensaje'] = "Something went wrong...";
+            echo "ERROR".$query."<br>".mysqli_error($connection);
+        }
+        echo json_encode($mensaje);
+        mysqli_close($connection); 
+    }
+
+    function deleteEmployee(){
+
+        $conn = new ConnectionDB();
+        $connection = $conn->connection();
+
+        $idE = $_REQUEST['idE'];
+
+        $query = "DELETE FROM employees WHERE idE = '$idE'";
+        $result = mysqli_query($connection, $query);
+        $mensaje = array("delete" => false, "mensaje" => "");
+
+        if($result){
+            $mensaje['delete'] = true;
+            $mensaje['mensaje'] = "Elimination completed...";
+        }else{
+            $mensaje['delete'] = false;
+            $mensaje['mensaje'] = "Something went wrong...";
+            echo "ERROR".$query."<br>".mysqli_error($connection);
+        }
+        echo json_encode($mensaje);
+        mysqli_close($connection); 
+    }
+
+    function showInsertEmployees(){
+        $conn = new ConnectionDB();
+        $connection = $conn->connection();
+
+        $query = "SELECT * FROM employees";
+        $result = mysqli_query($connection, $query);
+
+        if($result){
+            while ($row = mysqli_fetch_assoc($result)) {
+                $arr[] = $row;
+            }
+            return $arr;
+        }else{
+            echo "ERROR".$query."<br>".mysqli_error($connection);
+        }
+    }
+
+    function updateEmployee(){
+        $conn = new ConnectionDB();
+        $connection = $conn->connection();
+
+        $idEModal =$_REQUEST['idEModal'];
+        $nameModal =$_REQUEST['nameModal'];
+        $last_nameModal =$_REQUEST['last_nameModal'];
+        $user_nameModal =$_REQUEST['user_nameModal'];
+        $passwordModal =$_REQUEST['passwordModal'];
+
+        $query = "UPDATE employees 
+        SET name = '$nameModal', last_name = '$last_nameModal', user_name = '$user_nameModal', password = '$passwordModal' 
+        WHERE idE = '$idEModal'";
+        $result = mysqli_query($connection, $query);
+        $mensaje = array("update" => false, "mensaje" => "");
+
+        if($result){
+            $mensaje['update'] = true;
+            $mensaje['mensaje'] = "Successfully Updated...";
+        }else{
+            $mensaje['update'] = false;
+            $mensaje['mensaje'] = "Something went wrong...";
+            echo "ERROR".$query."<br>".mysqli_error($connection);
+        }
+        echo json_encode($mensaje);
+        mysqli_close($connection); 
+    }
+
+//PRODUCTS
+
+  function insertProduct(){
+        $conn = new ConnectionDB();
+        $connection = $conn->connection();
+        
+        $model = $_REQUEST['model'];
+        $brand = $_REQUEST['brand'];
+        $player = $_REQUEST['player'];
+        $price = $_REQUEST['price'];  
+
+        $mensaje = array("insert" => false, "mensaje" => "");
+        $query = "INSERT INTO products(model, brand, player, price) VALUES ('$model','$brand','$player','$price')";
+        $result = mysqli_query($connection, $query);
+
+        if($result){
+            $mensaje['insert'] = true;
+            $mensaje['mensaje'] = "Seccessfull Registration...";
+        }else{
+            $mensaje['insert'] = false;
+            $mensaje['mensaje'] = "Something went wrong...";
+            echo "ERROR".$query."<br>".mysqli_error($connection);
+        }
+        echo json_encode($mensaje);
+        mysqli_close($connection); 
+    }
+
+    function deleteProduct(){
+
+        $conn = new ConnectionDB();
+        $connection = $conn->connection();
+
+        $idP = $_REQUEST['idP'];
+
+        $query = "DELETE FROM products WHERE idP = '$idP'";
+        $result = mysqli_query($connection, $query);
+        $mensaje = array("delete" => false, "mensaje" => "");
+
+        if($result){
+            $mensaje['delete'] = true;
+            $mensaje['mensaje'] = "Elimination completed...";
+        }else{
+            $mensaje['delete'] = false;
+            $mensaje['mensaje'] = "Something went wrong...";
+            echo "ERROR".$query."<br>".mysqli_error($connection);
+        }
+        echo json_encode($mensaje);
+        mysqli_close($connection); 
+    }
+
+    function showInsertProducts(){
+        $conn = new ConnectionDB();
+        $connection = $conn->connection();
+
+        $query = "SELECT * FROM products";
+        $result = mysqli_query($connection, $query);
+
+        if($result){
+            while ($row = mysqli_fetch_assoc($result)) {
+                $arr[] = $row;
+            }
+            return $arr;
+        }else{
+            echo "ERROR".$query."<br>".mysqli_error($connection);
+        }
+    }
+
+    function updateProduct(){
+        $conn = new ConnectionDB();
+        $connection = $conn->connection();
+
+        $idPModal =$_REQUEST['idPModal'];
+        $modelModal =$_REQUEST['modelModal'];
+        $brandModal =$_REQUEST['brandModal'];
+        $playerModal =$_REQUEST['playerModal'];
+        $priceModal =$_REQUEST['priceModal'];
+
+        $query = "UPDATE products 
+        SET model = '$modelModal', brand = '$brandModal', player = '$playerModal', price = '$priceModal' 
+        WHERE idP = '$idPModal'";
+        $result = mysqli_query($connection, $query);
+        $mensaje = array("update" => false, "mensaje" => "");
+
+        if($result){
+            $mensaje['update'] = true;
+            $mensaje['mensaje'] = "Successfully Updated...";
+        }else{
+            $mensaje['update'] = false;
+            $mensaje['mensaje'] = "Something went wrong...";
+            echo "ERROR".$query."<br>".mysqli_error($connection);
+        }
+        echo json_encode($mensaje);
+        mysqli_close($connection); 
+    }
 }
 ?>

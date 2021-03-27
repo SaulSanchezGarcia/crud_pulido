@@ -28,6 +28,7 @@
           </div>
           <div>
             <button type="button" class="btn btn-primary" id="botonCust" style="margin: 0 0 15px"  onclick="insertCustomer();">Insert</button>
+            <button type="button" class="btn btn-secondary" id="botonCust" style="margin: 0 0 15px"  onclick="backAdm();">Back Adm</button>
           </div>
           <table class="table" id ="tbody">
           <thead>

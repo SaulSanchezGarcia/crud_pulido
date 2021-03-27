@@ -6,9 +6,9 @@
 <script src="../access/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container">
-  <a class="navbar-brand" href="#">ADMINISTRATOR</a>
+  <a class="navbar-brand" href="#"><i class="icon ion-md-basketball"></i>ADMINISTRATOR<i class="icon ion-md-basketball"></i></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

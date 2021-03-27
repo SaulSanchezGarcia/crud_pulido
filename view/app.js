@@ -1,6 +1,9 @@
-
 function viewLogin(){
     setTimeout("location.href='../view/login.php'", 40);
+}
+
+function backAdm(){
+    setTimeout("location.href='../view/admView.php'", 40);
 }
 
 function login(){
@@ -199,6 +202,247 @@ function updateCustomer(){
             }else{
                 alert("Please check if your email is correct");
             }
+        }else{
+            alert("The name and last name can only have letters");
+        }
+    }
+}
+
+//EMPLOYEE
+function insertEmployee(){
+    let name = $("#name").val();
+    let last_name = $("#last_name").val();
+    let user_name = $("#user_name").val();
+    let password = $("#password").val();
+
+    let userName_validation = /^[A-z 0-9]+$/i;
+
+    if(name == "" || last_name == "" || user_name == "" || password == ""){
+        alert("Please fill all fields");
+    }else{
+        if(userName_validation.test(name) && userName_validation.test(last_name) && userName_validation.test(user_name) && userName_validation.test(password)){
+            $.ajax({
+                url: "../controller/controller.php?accion=insertEmployee",
+                type: "post",
+                data: {name:name,last_name:last_name,user_name:user_name,password:password},
+                dataType: "JSON",
+                success: function(res){
+                    if(res.insert){
+                        alert(res.mensaje);
+                        $("#name").val("");
+                        $("#last_name").val("");
+                        $("#user_name").val("");
+                        $("#password").val("");
+
+                        $("#tbody").load(" #tbody");
+                            
+                        
+                        // $("#tbodyCustomer").load("./view/insertC.php");
+                        // $("#tbodyCustomer").load(" #tbodyCustomer");
+                    }else{
+                        alert(res.mensaje);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+
+        }else{
+            alert("The name and last name can only have letters");
+        }
+    }
+}
+
+function removeEmployee(idE){
+    $.ajax({
+        url: "../controller/controller.php?accion=deleteEmployee",
+        type: "post",
+        data: {idE:idE},
+        dataType: "JSON",
+        success: function(res){
+            if(res.delete){
+                alert(res.mensaje);
+                $("#tbody").load(" #tbody");
+            }else{
+                alert(res.mensaje);
+            }
+         
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+    });
+}
+
+function modalDataEmp(dataEmp){
+    let dE = dataEmp.split('||');
+    console.log(dE);
+    $("#idEModal").val(dE[0]);
+    $("#nameModal").val(dE[1]);
+    $("#last_nameModal").val(dE[2]);
+    $("#user_nameModal").val(dE[3]);
+    $("#passwordModal").val(dE[4]);
+
+}
+
+function updateEmployee(){
+    let idEModal = $("#idEModal").val();
+    let nameModal = $("#nameModal").val();
+    let last_nameModal = $("#last_nameModal").val();
+    let user_nameModal = $("#user_nameModal").val();
+    let passwordModal = $("#passwordModal").val();
+
+    let userName_validation = /^[A-z 0-9]+$/i;
+
+
+    if(nameModal == "" || last_nameModal == "" || user_nameModal == "" || passwordModal == ""){
+        alert("Please fill all fields");
+    }else{
+        if(userName_validation.test(nameModal) && userName_validation.test(last_nameModal) && userName_validation.test(user_nameModal) && userName_validation.test(passwordModal)){
+
+            $.ajax({
+                url: "../controller/controller.php?accion=updateEmployee",
+                type: "post",
+                data: {idEModal:idEModal, nameModal:nameModal, last_nameModal:last_nameModal, user_nameModal:user_nameModal, passwordModal:passwordModal},
+                dataType: "JSON",
+                success: function(res){
+                    if(res.update){
+                        alert(res.mensaje);
+                        $("#nameModal").val("");
+                        $("#last_nameModal").val("");
+                        $("#user_nameModal").val("");
+                        $("#passwordModal").val("");
+
+                        $("#tbody").load(" #tbody");
+                            
+                    }else{
+                        alert(res.mensaje);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }else{
+            alert("The name and last name can only have letters");
+        }
+    }
+}
+
+//PRODUCTS
+function insertProduct(){
+    let model = $("#model").val();
+    let brand = $("#brand").val();
+    let player = $("#player").val();
+    let price = $("#price").val();
+
+    let validation = /^[A-z 0-9]+$/i;
+
+    if(model == "" || brand == "" || player == "" || price == ""){
+        alert("Please fill all fields");
+    }else{
+        if(validation.test(model) && validation.test(brand) && validation.test(player) && validation.test(price)){
+            $.ajax({
+                url: "../controller/controller.php?accion=insertProduct",
+                type: "post",
+                data: {model:model, brand:brand, player:player, price:price},
+                dataType: "JSON",
+                success: function(res){
+                    if(res.insert){
+                        alert(res.mensaje);
+                        $("#model").val("");
+                        $("#brand").val("");
+                        $("#player").val("");
+                        $("#price").val("");
+
+                        $("#tbody").load(" #tbody");
+                    }else{
+                        alert(res.mensaje);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+
+        }else{
+            alert("Something is wrong or something is missing...");
+        }
+    }
+}
+
+function removeProduct(idP){
+    // alert("Hola");
+    $.ajax({
+        url: "../controller/controller.php?accion=deleteProduct",
+        type: "post",
+        data: {idP:idP},
+        dataType: "JSON",
+        success: function(res){
+            if(res.delete){
+                alert(res.mensaje);
+                $("#tbody").load(" #tbody");
+            }else{
+                alert(res.mensaje);
+            }
+         
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+    });
+}
+
+function modalDataProd(dataProd){
+    let dP = dataProd.split('||');
+    console.log(dP);
+    $("#idPModal").val(dP[0]);
+    $("#modelModal").val(dP[1]);
+    $("#brandModal").val(dP[2]);
+    $("#playerModal").val(dP[3]);
+    $("#priceModal").val(dP[4]);
+
+}
+
+function updateProduct(){
+    let idPModal = $("#idPModal").val();
+    let modelModal = $("#modelModal").val();
+    let brandModal = $("#brandModal").val();
+    let playerModal = $("#playerModal").val();
+    let priceModal = $("#priceModal").val();
+
+    let userName_validation = /^[A-z 0-9]+$/i;
+
+
+    if(modelModal == "" || brandModal == "" || playerModal == "" || priceModal == ""){
+        alert("Please fill all fields");
+    }else{
+        if(userName_validation.test(modelModal) && userName_validation.test(brandModal) && userName_validation.test(playerModal) && userName_validation.test(priceModal)){
+
+            $.ajax({
+                url: "../controller/controller.php?accion=updateProduct",
+                type: "post",
+                data: {idPModal:idPModal, modelModal:modelModal, brandModal:brandModal, playerModal:playerModal, priceModal:priceModal},
+                dataType: "JSON",
+                success: function(res){
+                    if(res.update){
+                        alert(res.mensaje);
+                        $("#modelModal").val("");
+                        $("#brandModal").val("");
+                        $("#playerModal").val("");
+                        $("#priceModal").val("");
+
+                        $("#tbody").load(" #tbody");
+                            
+                    }else{
+                        alert(res.mensaje);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
         }else{
             alert("The name and last name can only have letters");
         }
