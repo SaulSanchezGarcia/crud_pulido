@@ -35,26 +35,36 @@
       <p>Lorem nsectetur adipisicing elit. Consequuntur a autem, obcaecati nostrum illum culpa, praesentium fugiat quaerat ipsam earum numquam magni quis minus dicta veritatis ipsa fuga nulla officia.</p>
     </div>
 
-    <div class="row">
-        <div class="col-lg-4 col-sm-12">
-          <img src="../img/giannis1.jpg" alt="Galeria Imagen">
-        </div>
-        <div class="col-lg-4 col-sm-12">
-          <img src="../img/giannis2.jpg" alt="Galeria Imagen">
-        </div>
-        <div class="col-lg-4 col-sm-12">
-          <img src="../img/giannis3.jpg" alt="Galeria Imagen">
-        </div>
-        <div class="col-lg-4 col-sm-12">
-          <img src="../img/kd1.jpg" alt="Galeria Imagen">
-        </div>
-        <div class="col-lg-4 col-sm-12">
-          <img src="../img/kd2.jpg" alt="Galeria Imagen">
-        </div>
-        <div class="col-lg-4 col-sm-12">
-          <img src="../img/kd3.jpg" alt="Galeria Imagen">
-        </div>
+    <div class="row itemContainer">
+        <?php
+        require_once("../controller/controller.php");
+          foreach($showProducts as $showP){
+            echo "<div class='col-lg-4 col-sm-12 items'><img class='itemImg' src=".$showP['img'].">".
+            "<h6 class='itemModel'>".$showP['model']."</h6>".
+            "<h6 class='itemBrand'>".$showP['brand']."</h6>".
+            "<h6 class='itemPlayer'>".$showP['player']."</h6>".
+            "<h6 class='itemPrice'>".$showP['price']."</h6>".
+            "</div>".
+            "<div><button type='button' class='btn btn-primary addCard'>Add To Card</button></div>";
+          }
+        ?>
     </div>
 </section>
+
+<table class="table">
+          <thead>
+              <tr>
+                <th scope="col">Img</th>
+                <th scope="col">Model</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Player</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class ="tablebody">
+
+            </tbody>
+            </table>
 
 <script src="app.js"></script>

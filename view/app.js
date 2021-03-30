@@ -448,3 +448,38 @@ function updateProduct(){
         }
     }
 }
+
+let addCard = document.querySelector(".addCard");
+
+addCard.addEventListener("click", addToCard);
+
+function addToCard(evt){
+    // alert("hola a todos")
+    let boton = evt.target;
+    let itemContainer = boton.closest(".itemContainer");
+    let items = itemContainer.querySelector(".items");
+    let itemImg = itemContainer.querySelector(".itemImg").textContent;
+    let itemModel = itemContainer.querySelector(".itemModel").textContent;
+    let itemBrand = itemContainer.querySelector(".itemBrand").textContent;
+    let itemPlayer = itemContainer.querySelector(".itemPlayer").textContent;
+    let itemPrice = itemContainer.querySelector(".itemPrice").textContent;
+    // console.log(itemImg, itemModel, itemBrand, itemPlayer, itemPrice);
+
+    console.log(itemImg, itemModel, itemBrand, itemPlayer, itemPrice);
+    addItemToCard(itemImg, itemModel, itemBrand, itemPlayer, itemPrice);
+}
+
+function addItemToCard(itemImg, itemModel, itemBrand, itemPlayer, itemPrice){
+    console.log(itemModel);
+    let tablebody = document.querySelector(".tablebody");
+    let containerRow = document.createElement("div");
+    let addToCartHtml = `<tr><td><img src="${itemImg}"></td>
+                        <td>${itemModel}</td>
+                        <td>${itemBrand}</td>
+                        <td>${itemPlayer}</td>
+                        <td>${itemPrice}</td>
+                        <td><button type="button" class="btn btn-danger">X</button></td></tr>`;
+
+    containerRow.innerHTML = addToCartHtml;
+    tablebody.append(containerRow);
+}
