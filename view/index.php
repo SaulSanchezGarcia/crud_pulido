@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="../access/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="style.css">
-<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
 <!--Para abrir modales se usa bootstrap.min.js-->
 <script src="../access/bootstrap/js/bootstrap.min.js"></script>
@@ -8,7 +7,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container">
-  <a class="navbar-brand" href="#"><i class="icon ion-md-basketball"></i>NBA SHOES<i class="icon ion-md-basketball"></i></a>
+  <a class="navbar-brand" href="#">NBA SHOES</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -43,9 +42,9 @@
             "<h6 class='itemModel'>".$showP['model']."</h6>".
             "<h6 class='itemBrand'>".$showP['brand']."</h6>".
             "<h6 class='itemPlayer'>".$showP['player']."</h6>".
-            "<h6 class='itemPrice'>".$showP['price']."</h6>".
-            "</div>".
-            "<div><button type='button' class='btn btn-primary addCard'>Add To Card</button></div>";
+            "<h6 class='itemPrice'>"."$".$showP['price']."</h6>".
+            "<button type='button' class='btn btn-primary addCards'>Add To Card</button>".
+            "</div>";
           }
         ?>
     </div>
